@@ -1,0 +1,104 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block title %} {% for lePost in post %} {{ lePost.titre }} {% endfor %} {% endblock %}
+
+
+{% block body %}
+
+ {% for lePost in post %} <i class="fa fa-home"></i> > Accueil > Catégorie > {{ lePost.categorie }} {% endfor %}
+
+<br><br>
+
+<h5> Sujet :  {% for lePost in post %} {{ lePost.titre }} {% endfor %} </h5>  
+<br>
+
+     {% for lePost in post %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <a href="{{ path('newpost') }}"> <button class="btn btn-info"> + Nouveau Sujet </button> </a>
+        <a href="#repondre" style="margin-left: 10px;"> <button class="btn btn-danger"> Répondre </button> </a>
+
+    {% endif %}
+
+    <a href="{{ path('posts', {'nomCategorie' : lePost.categorie}) }}" style="margin-left: 10px;"> <button class="btn btn-success"> Liste des sujets </button> </a>
+
+    {% endfor %}
+
+<br><br>
+
+
+<div class="col-12" style="padding-bottom: 40px;">
+
+
+        <div class="row" style="margin-top: 10px;">
+        {% for lePost in post %}
+            
+                        
+        <div class="col-12 com_div">
+            
+            <div class="row">
+                
+                <div class="col-2" style="border-right: 1px silver solid;"> <p style="text-align: center;"> {{ lePost.auteur }} <i class="fa fa-envelope" style="color: silver;"></i> </p> <img src="{{ asset('bundles/user/img/avatar.jpg') }}" class="avatar_user" /> </div>
+        
+                
+                <div class="col-10">
+                
+                <p>
+                    <span style="color: blue;font-size: 12px;"> {{ lePost.date|date('d M y à h:m:s') }} </span></p>
+
+                <hr>
+
+                <p> {{ lePost.message }} </p>
+                
+            </div>
+                
+            </div>
+            
+        </div>
+            
+            
+
+            {% for commentaire in listCommentaires %}
+                    
+                <div class="col-12 com_div">
+
+            <div class="row">
+                
+                <div class="col-2" style="border-right: 1px silver solid;"> <p style="text-align: center;"> {{ commentaire.auteur }} <i class="fa fa-envelope" style="color: silver;"></i> </p> <img src="{{ asset('bundles/user/img/avatar.jpg') }}" class="avatar_user" /> </div>
+        
+                
+                <div class="col-10">
+                
+                <p>
+                    <span style="color: blue;font-size: 12px;"> {{ commentaire.date|date('d M y à h:m:s') }} </span></p>
+
+                <hr>
+
+                <p> {{ commentaire.commentaire }} </p>
+                
+            </div>
+                
+            </div>
+
+                </div>
+            
+            {% endfor %}
+        
+         {% endfor %}
+    </div>
+    
+    
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    
+        <div id="repondre" class="well">
+
+          {{ form(form) }}
+
+        </div>
+    
+    {% endif %}
+    
+</div>
+
+{% endblock %}

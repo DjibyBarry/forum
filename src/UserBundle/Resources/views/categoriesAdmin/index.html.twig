@@ -1,0 +1,45 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Les Categories </h1>
+<ul>
+      <a href="{{ path('adminCat_New') }}"><button type="button" class="btn btn-info"><i class="fa fa-plus"></i> Ajouter une catégorie </button></a>
+
+    </ul>
+
+    <table class="table">
+         <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
+                <th scope="col"> Exporter en XML </th>
+                <th scope="col"> Exporter en JSON </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cat in categories %}
+            <tr>
+
+                <td>{{ cat.id }}</td>
+                <td>{{ cat.nom }}</td>
+
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('adminCat_show', { 'id': cat.id }) }}">Voir</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('adminCat_edit', { 'id': cat.id }) }}">Modifier</a>
+                    </li>
+                </ul>
+                </td>
+                <td><a class="btn btn-info" href="{{ path('newxml', { 'nomCategorie': cat.nom }) }}">Exporter en XML</a></td>
+                <td><a class="btn btn-danger" href="{{ path('newjson', { 'nomCategorie': cat.nom }) }}">Exporter en JSON</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

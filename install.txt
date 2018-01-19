@@ -1,0 +1,19 @@
+﻿Installation du projet : 
+
+
+- Via le terminal, écrire les commandes suivantes :
+
+	=> Composer update
+
+	=> sudo chmod -R 777 var (pour donner les droits d'accès au dossier var, et éviter la page d'erreur)
+
+- Modifier le fichier app/config/parameters.yml pour paramétrer la base de données
+
+
+- Toujours via le terminal, pour installer la base de données : 
+
+	=> php bin/console doctrine:schema:update --dump-sql
+	=> php bin/console doctrine:schema:update --force
+
+
+

@@ -1,0 +1,30 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+
+{% block body %}
+    <h1> Catégorie {{ cat.nom }} </h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cat.id }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('adminCat_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+              <a href="{{ path('adminCat_edit', { 'id': cat.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

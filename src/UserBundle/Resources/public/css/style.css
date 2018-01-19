@@ -1,0 +1,78 @@
+.card:hover{
+  transform:scale(1.05);
+  -webkit-transform: scale(1.05);
+  -ms-transform:scale(1.05);
+  -o-transform:scale(1.05);
+  opacity:0.8;
+}
+
+body
+{
+    padding-bottom: 40px;
+}
+
+.send_button
+{
+    margin-top: 20px;
+}
+
+label
+{
+    margin-top: 20px;
+}
+
+.form-control
+{
+    width: 100%;
+}
+
+.input_commentaire
+{
+    width: 50%;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #e2e2e2; 
+ }
+
+.avatar_user
+{
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.com_div
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px #e3e3e3 solid; 
+    margin-top: 15px;
+}
+
+
+.navbar, nav
+{
+    background-color: #8d8d8d !important;
+}
+
+.bg-dark
+{
+    background-color: #8d8d8d !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

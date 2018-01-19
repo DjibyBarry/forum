@@ -1,0 +1,45 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block body %}
+    <h1> Liste des utilisateurs </h1>
+<ul>
+      <a href="{{ path('admin_user_new') }}"><button type="button" class="btn btn-info"><i class="fa fa-plus"></i> Ajouter un utilisateur </button></a>
+
+    </ul>
+
+    <table class="table">
+         <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Pseudo</th>
+                <th scope="col">email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email}}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block title %} Catégories {% endblock %}
+
+{% block body %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+       <a href="{{ path('newpost') }}"> <button class="btn btn-success"> + Nouveau Sujet </button> </a>
+
+    {% endif %}
+
+    <table class="table table-striped" style="margin-top: 40px;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"> Sujet </th>
+          <th scope="col"> Auteur </th>
+          <th scope="col"> Date </th>
+        </tr>
+      </thead>
+      <tbody>
+
+            {% set number = 1 %}
+
+            {% for post in listPosts %}
+
+                <tr>
+                  <th scope="row"> {{ number }} </th>
+                  <td> <a href="{{ path('post', {'id' : post.id}) }}"> {{ post.titre }}  </a> </td>
+                  <td> <a href="#"> {{ post.auteur }}  </a> </td>
+                  <td> <a href="#"> {{ post.date|date('d-m-Y') }}  </a> </td>
+                </tr>
+
+            {% set number = number + 1 %}
+            {% else %}
+
+             <tr> <td> Il n'y a pas encore de sujet dans cette catégorie </td> </tr>
+
+            {% endfor %}               
+
+      </tbody>
+    </table>
+
+
+{% endblock %}

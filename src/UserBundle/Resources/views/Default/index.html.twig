@@ -1,0 +1,86 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+
+{# si l'utilisateur est connecté en admin interface admin affiché sinon message de bienvenue seul!#}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="alert alert-success" role="alert">
+  Vous êtes connecté en administrateur!
+</div>
+
+
+<div class="jumbotron jumbotron-fluid">
+
+  <div class="container">
+    <h1 class="display-4">Espace Administrateur</h1>
+    <p class="lead">Vous pouvez:
+    <ul>
+    <li>Consulter </li>
+    <li>Modifier </li>
+    <li>Supprimer </li>
+    </ul></p>
+
+<div class="dropdown show">
+  <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Voir
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="{{ path('admin_user_index') }}">Utilisateurs</a>
+    <a class="dropdown-item" href="{{ path('adminCat_index') }}">Catégories</a>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+{% else %}
+
+
+
+    <table class="table table-striped" style="margin-top: 40px;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"> Sujet </th>
+          <th scope="col"> Catégorie </th>
+          <th scope="col"> Auteur </th>
+          <th scope="col"> Date </th>
+        </tr>
+      </thead>
+      <tbody>
+
+            {% set number = 1 %}
+
+            {% for post in listPosts %}
+
+                <tr>
+                  <th scope="row"> {{ number }} </th>
+                  <td> <a href="{{ path('post', {'id' : post.id}) }}"> {{ post.titre }}  </a> </td>
+                  <td> <a href="#"> {{ post.categorie }}  </a> </td>
+                  <td> <a href="#"> {{ post.auteur }}  </a> </td>
+                  <td> <a href="#"> {{ post.date|date('d-m-Y') }}  </a> </td>
+                </tr>
+
+            {% set number = number + 1 %}
+            {% else %}
+
+             <tr> <td> Il n'y a pas encore de sujet dans cette catégorie </td> </tr>
+
+            {% endfor %}               
+
+      </tbody>
+    </table>
+
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block title %} Nouvelle Catégorie {% endblock %}
+
+
+{% block body %}
+
+<div class="col-md-12" style="background-color: #efefef; padding-top: 25px; padding-bottom: 25px;">
+    
+<div class="row">
+
+    <div class="col-md-12">
+        
+        <h2 style="text-align: center;"> Ajouter une catégorie </h2>
+    
+    </div>
+    
+</div>
+    
+<div class="row">
+    
+    <div class="col-md-6 offset-md-3">
+    
+        <div class="well">
+
+          {{ form(form) }}
+
+        </div>
+    
+    </div>
+    
+</div>
+
+    </div>
+
+{% endblock %}
